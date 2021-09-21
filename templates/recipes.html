@@ -9,8 +9,25 @@
         {{ recipe.time }}<br>
         {{ recipe.servings }}<br>
         {{ recipe.instructions }}<br>
+    
     {% endfor %}
-</body>
-</html>
+    <ul class="collapsible">
+        <li>
+            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Breakfast</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        <li>
+            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Lunch</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        <li>
+            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Dinner</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+        <li>
+            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Dessert</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+        </li>
+    </ul>
 
-{% endblock %}
+    {% endblock %}
