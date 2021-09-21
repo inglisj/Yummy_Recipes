@@ -24,7 +24,7 @@
 				<ul class="right hide-on-med-and-down">
 					<li><a href="{{ url_for('get_recipes') }}">Home</a></li>
 					<li><a href="#">User</a></li>
-					<li><a href="#">New Recipe</a></li>
+					<li><a href="{{ url_for('add_recipe') }}">New Recipe</a></li>
 					<li><a href="#">Recipe Book</a></li>
 				</ul>
 			</div>
@@ -35,7 +35,7 @@
             <li><h4 class="center-align #00897b teal darken-1">Yummy Recipes</h4></li>
             <li><a href="{{ url_for('get_recipes') }}">Home</a></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">New Recipe</a></li>
+            <li><a href="{{ url_for('add_recipe') }}">New Recipe</a></li>
             <li><a href="#">Recipe Book</a></li>
         </ul>    
     </header>
