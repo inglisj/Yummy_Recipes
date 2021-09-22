@@ -1,4 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="row featurette">
+    <div class="col-md-7">
+        <h1 class="center-align title-font">Yummy Recipes</h1>
+    </div>
+</div>
+
+<div class="section row">
+    <div class="col s12 picture-box center-align">
+        <img src="{{url_for('static', filename='images/panimage.jpg')}}" alt="Image of Pan" class="picture center-align"/>
+    </div>
+</div>
+
+
+<div class="section row">
+    <div class="col s12 main-font flow-text center-align">
+        <p> View, Create, Share, Inspire </p>
+            
+        <p>Yummy Pages is your ultimate website to view; be inspired and inspire fellow budding cooks with Yummy Pages Online Recipe Book and portal to add and share your go to recipes</p>
+
+
 {% endblock %}
