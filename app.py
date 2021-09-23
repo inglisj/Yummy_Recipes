@@ -31,10 +31,19 @@ def get_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
-
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
-    return render_template("registration.html")
+    if request.method == "POST":
+       # check if username already exists in db
+       existing_user = mongo.db.users.find_one(
+       {"username": request.form.get("username").lower()})
+
+    if existing_user:
+       flash("Username already exists")
+       return redirect(url_for("register"))
+
+       return render_template("registration.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
