@@ -31,6 +31,13 @@ def get_recipes():
     return render_template("recipes.html", recipes=recipes)
 
 
+
+@app.route("/")
+@app.route("/add_recipe")
+def add_recipe():
+     return render_template("add_recipe.html")
+
+
 @app.route("/registration", methods=["GET", "POST"])
 def registration():
     if request.method == "POST":
@@ -42,9 +49,18 @@ def registration():
        flash("Username already exists")
        return redirect(url_for("register"))
 
-       return render_template("registration.html")
+    register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        } 
+mongo.db.users.insert_one(register)
 
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+    return render_template("registration.html")
 
+    
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
