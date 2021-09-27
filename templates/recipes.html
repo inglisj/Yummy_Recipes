@@ -2,32 +2,17 @@
 {% block content %}
 
 <body>
-       {% for recipe in recipes %}
-        {{ recipe.name }}<br>
-        {{ recipe.photo }}<br>
-        {{ recipe.ingredients }}<br>
-        {{ recipe.time }}<br>
-        {{ recipe.servings }}<br>
-        {{ recipe.instructions }}<br>
-    
-    {% endfor %}
-    <ul class="collapsible">
+          <ul class="collapsible">
+              {% for recipe_Category in recipe_Category %}    
         <li>
-            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Breakfast</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-header white-text #00897b teal darken-1">
+                <i class="fas fa-caret-down"></i>Breakfast</div>
+                <strong>{{recipes.Categories_name }}</strong> 
+            
+            <div class="collapsible-body"><span>Breakfast Ideas</span></div>
+                <strong>{{recipes.recipes_name}}</strong>
         </li>
-        <li>
-            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Lunch</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Dinner</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-        <li>
-            <div class="collapsible-header white-text #00897b teal darken-1"><i class="fas fa-caret-down"></i>Dessert</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-        </li>
-    </ul>
+              {% endfor %}
+            </ul>
 
-    {% endblock %}
+{% endblock %}

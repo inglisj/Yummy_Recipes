@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
 
+
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -16,6 +17,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
 @app.route('/home_page')
 def home_page():
@@ -23,9 +25,16 @@ def home_page():
 
 
 @app.route("/")
+@app.route("/get_recipes.Categories")
+def get_recipes_Categories():
+    get_recipes_Categories = list(mongo.db.recipes.find())
+    return render_template("recipes.html", recipes=recipes)
+
+
+@app.route("/")
 @app.route("/get_recipes")
 def get_recipes():
-    recipes = list(mongo.db.recipes.find())
+    recipes=list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
 
@@ -38,21 +47,36 @@ def add_recipe():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-       # check if username already exists in db
-       existing_user = mongo.db.users.find_one(
-       {"username": request.form.get("username").lower()})
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
 
-       if existing_user():
-           flash("Username already exists")
-           return redirect(url_for("register"))
+        if existing_user:
+            flash("Username already exists")
+            return redirect(url_for("register"))
 
-       register = {    
-           "username": request.form.get("username").lower(),
-           "password": generate_password_hash(request.form.get("password"))
-} 
-mongo.db.users.insert_one(register)
- 
-  
+        register = {
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.insert_one(register)
+
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        flash("Registration Successful!")
+        return redirect(url_for("profile", username=session["user"]))
+
+    return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+            
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

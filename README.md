@@ -42,9 +42,9 @@ The image was sourced from https://www.realsimple.com/
 Wireframes for the designing of the project were built using balsamiq cloud. 
 https://balsamiq.com/wireframes/cloud/
 
-[Elite Gym Homepage] (https://balsamiq.cloud/ssim83c/prntpcj/r9C6D)
-[Elite Gym About] (https://balsamiq.cloud/ssim83c/prntpcj/r3AC0)
-[Elite Gym Services] (https://balsamiq.cloud/ssim83c/prntpcj/rE336)
+[Yummy Pages Gym Homepage] 
+[Yummy Pages About] 
+[Yummy Pages] 
 
 ##Features 
 Responsive on all devices using bootstrap layout
