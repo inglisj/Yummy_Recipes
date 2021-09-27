@@ -27,7 +27,7 @@ def home_page():
 @app.route("/")
 @app.route("/get_recipes")
 def get_recipes():
-    recipes = mongo.db.recipes.find()
+    recipes = list(mongo.db.recipes.find())
     return render_template("recipes.html", recipes=recipes)
 
 
@@ -44,6 +44,7 @@ def register():
        existing_user = mongo.db.users.find_one(
        {"username": request.form.get("username").lower()})
 
+def existing_user():
     if existing_user:
        flash("Username already exists")
        return redirect(url_for("register"))
